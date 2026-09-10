@@ -79,4 +79,6 @@ Se repite el código Preparar Python para vaidar y para publicar (18-21, 48-51 e
 
 En ninguna parte de pipeline.yml se verifica o actualiza la versión, por lo que se borra el artefacto de la ejecución anterior. Además, unido al defecto 1, se publica aunque haya fallado la validación. Se pierde la garantía de versionar correctamente el software."
 -"En base a eso, ¿considerarías cambiar la versión de 1.2.0 a 1.2.1 o a 1.3.0?"
+-"Ya corregí todo, ayúdame a hacer esto:
+"Hasta acá vieron el pipeline pasar. Ahora demuestren que detiene. 1. Creen una rama nueva desde main. 2. Agreguen a un archivo existente en src/despachos/ una función nueva de al menos 15 líneas, con lógica real —condicionales, no un return fijo— y sin ninguna prueba que la cubra. 3. Abran un pull request hacia main de su propio fork. Verifiquen el base repository antes de crearlo. 4. El pipeline debe fallar en el paso de análisis de calidad, por cobertura insuficiente sobre código nuevo. 5. No fusionen el pull request. Guarden la URL de la ejecución fallida. Si el pipeline pasa en verde, el quality gate no está deteniendo nada. Revisen el punto 3 de la Parte 2.""
 -"Describe una limitación de eficiencia que las correcciones hechas no cumplen, y explícala brevemente"
