@@ -71,6 +71,42 @@ def calcular(envio: Envio) -> float:
     return round(total, 2)
 
 
+def clasificar_riesgo_envio(envio: Envio) -> str:
+    """Clasifica el riesgo logistico de un envio segun zona, peso y valor.
+ 
+    Devuelve una de: "bajo", "medio", "alto", "critico".
+    """
+    puntaje = 0
+ 
+    if envio.zona in ZONAS_ALEJADAS:
+        puntaje += 2
+    elif envio.zona in {"sierra", "costa_sur"}:
+        puntaje += 1
+ 
+    if envio.peso_kg > 50:
+        puntaje += 3
+    elif envio.peso_kg > 20:
+        puntaje += 2
+    elif envio.peso_kg > 5:
+        puntaje += 1
+ 
+    if envio.valor_declarado > 1000:
+        puntaje += 3
+    elif envio.valor_declarado > 300:
+        puntaje += 1
+ 
+    if envio.urgente:
+        puntaje += 1
+ 
+    if puntaje >= 7:
+        return "critico"
+    if puntaje >= 4:
+        return "alto"
+    if puntaje >= 2:
+        return "medio"
+    return "bajo"
+
+
 def desglose(envio: Envio) -> dict[str, float]:
     base = TARIFA_BASE
     peso = costo_peso(envio.peso_kg)
